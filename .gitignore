@@ -65,3 +65,6 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+# Eclipse metadata folder
+.metadata/
