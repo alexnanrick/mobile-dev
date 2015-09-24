@@ -1,6 +1,6 @@
 package ie.dit;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
 	private static double pi = 3.14;
 	private double radius;
 	
