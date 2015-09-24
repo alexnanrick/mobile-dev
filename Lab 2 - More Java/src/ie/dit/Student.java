@@ -1,10 +1,16 @@
 package ie.dit;
 
 public class Student extends Person implements PublishDetails{
-	private String studentID;
+	private int studentID;
 	private String courseCode;
+	static int counter = 1;
 	
-	public Student(String name, char gender, String studentID, String courseCode) {
+	public Student(String name, char gender) {
+		super(name, gender);
+		studentID = counter++;
+	}
+	
+	public Student(String name, char gender, int studentID, String courseCode) {
 		super(name, gender);
 		this.studentID = studentID;
 		this.courseCode = courseCode;

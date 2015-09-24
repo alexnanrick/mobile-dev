@@ -39,13 +39,22 @@ public class Person {
 		
 		System.out.println(test);
 		
-		Student s1 = new Student("Alex", 'M', "C13451458", "DT228");
+		Student s1 = new Student("Alex", 'M');
+		
+		Student s2 = new Student("Abdul", 'F');
 		
 		test = s1.toString();
 		
 		System.out.println(test);
 		
 		s1.confirmDetails("Alex");
+		
+		test = s2.toString();
+		
+		System.out.println(test);
+		
+		s2.confirmDetails("Abdul");
+		
 	}
 }
 
