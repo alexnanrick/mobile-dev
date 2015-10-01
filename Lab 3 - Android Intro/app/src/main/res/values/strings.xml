@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab 3</string>
+
+    <string name="hello_buddy">Hey Buddy!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="click_me">Click me!</string>
+    <string name="click_me_too">Click me too!</string>
+</resources>
