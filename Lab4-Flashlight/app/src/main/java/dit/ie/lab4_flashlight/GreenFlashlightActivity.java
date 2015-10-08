@@ -15,8 +15,8 @@ public class GreenFlashlightActivity extends AppCompatActivity {
         final Button green_button = (Button) findViewById(R.id.press_red);
         green_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(GreenFlashlightActivity.this, RedFlashlightActivity.class);
-                startActivity(intent);
+
+                finish();    // pops this activity off stack
             }
         });
     }
