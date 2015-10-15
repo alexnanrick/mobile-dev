@@ -2,7 +2,7 @@ package com.zontzor.lab5_morelists;
 
 /**
  * Created by nanrick on 15/10/15.
- */
+
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,3 +41,4 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     };
 }
+*/

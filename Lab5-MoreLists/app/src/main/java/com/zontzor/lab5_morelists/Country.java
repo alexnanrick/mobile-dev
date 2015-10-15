@@ -6,15 +6,10 @@ import android.os.Bundle;
 /**
  * Created by nanrick on 15/10/15.
  */
-public class China extends Activity {
+public class Country extends Activity {
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.country_layout);
-
-        String country;
-
-
     }
 }
