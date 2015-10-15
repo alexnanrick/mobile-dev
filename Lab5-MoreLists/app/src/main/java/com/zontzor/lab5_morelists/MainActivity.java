@@ -2,15 +2,10 @@ package com.zontzor.lab5_morelists;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class MainActivity extends ListActivity {
@@ -26,15 +21,16 @@ public class MainActivity extends ListActivity {
         countries.add("Saudi Arabia");
         countries.add("China");
         countries.add("Sealand");
-        countries.add("Chrismas Island");
+        countries.add("Christmas Island");
         countries.add("DRPK");
 
         setListAdapter(new ArrayAdapter<>(this, R.layout.mylist, R.id.Itemname,countries));
     }
 
-    public void onListItemClick(ListView listView, View v, int position, long id) {
-
+    public void onListItemClick(ListView list, View v, int position, long id) {
+        String selection = list.getItemAtPosition(position).toString();
         Intent myNewActivity = new Intent(MainActivity.this, Country.class);
+        myNewActivity.putExtra("Country", selection);
         startActivity(myNewActivity);
     }
 }
