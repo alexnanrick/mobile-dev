@@ -15,6 +15,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Ireland">
+        </activity>
+
+        <activity android:name=".China">
+        </activity>
+
+        <activity android:name=".Colombia">
+        </activity>
+
+        <activity android:name=".SaudiArabia">
+        </activity>
+
+        <activity android:name=".SriLanka">
+
+        </activity>
     </application>
 
 </manifest>
