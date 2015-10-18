@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class MainActivity extends ListActivity {
         countries.add("Christmas Island");
         countries.add("DRPK");
 
-        ArrayAdapter basicAdapter = new ArrayAdapter<>(this, R.layout.mylist, R.id.Itemname,countries);
+        ListAdapter basicAdapter = new MyAdapter(this,countries);
         setListAdapter(basicAdapter);
     }
 
