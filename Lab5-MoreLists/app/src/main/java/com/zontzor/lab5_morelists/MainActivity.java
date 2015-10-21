@@ -35,6 +35,7 @@ public class MainActivity extends ListActivity {
         String selection = list.getItemAtPosition(position).toString();
         Intent myNewActivity = new Intent(MainActivity.this, Country.class);
         myNewActivity.putExtra("Country", selection);
+        myNewActivity.putExtra("Position", position);
         startActivity(myNewActivity);
     }
 /*
