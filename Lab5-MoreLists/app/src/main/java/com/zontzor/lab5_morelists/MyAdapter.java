@@ -19,8 +19,13 @@ public class MyAdapter extends ArrayAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater theInflater = LayoutInflater.from(getContext());
-        View theView = theInflater.inflate(R.layout.mylist, parent, false);
+
+        View theView = convertView;
+
+        if(theView == null) {
+            LayoutInflater theInflater = LayoutInflater.from(getContext());
+            theView = theInflater.inflate(R.layout.mylist, parent, false);
+        }
 
         String country = (String) getItem(position);
 
