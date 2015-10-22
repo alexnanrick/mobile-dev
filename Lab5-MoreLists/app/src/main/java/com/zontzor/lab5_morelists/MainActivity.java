@@ -1,12 +1,9 @@
 package com.zontzor.lab5_morelists;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -38,10 +35,4 @@ public class MainActivity extends ListActivity {
         myNewActivity.putExtra("Position", position);
         startActivity(myNewActivity);
     }
-/*
-    class myAdapter extends ArrayAdapter {
-        private ArrayList<String> objects;
-
-        public myAdapter(Context context, int textViewResourceID, )
-    }*/
 }

@@ -33,7 +33,7 @@ public class MyAdapter extends ArrayAdapter{
         theTextView.setText(country);
 
         ImageView theImageView = (ImageView) theView.findViewById(R.id.icon);
-        if (country == "Ireland") {
+        if (country.equals("Ireland")) {
             theImageView.setImageResource(R.mipmap.argentina_flag);
         } else {
             theImageView.setImageResource(R.mipmap.ok_tick);
