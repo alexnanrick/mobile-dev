@@ -11,11 +11,11 @@ import android.widget.TextView;
 /**
  * Created by Zontzor on 2015-10-26.
  */
-public class MyAdapter extends BaseAdapter {
+public class MainMenuAdapter extends BaseAdapter {
     private Context context;
     private final String[] menuOptions;
 
-    public MyAdapter(Context context, String[] menuOptions) {
+    public MainMenuAdapter(Context context, String[] menuOptions) {
         this.context = context;
         this.menuOptions = menuOptions;
     }
@@ -32,7 +32,7 @@ public class MyAdapter extends BaseAdapter {
             gridView = new View(context);
 
             // get layout from menu_gridview.xml
-            gridView = inflater.inflate(R.layout.menu_gridview, null);
+            gridView = inflater.inflate(R.layout.item_menu_option, null);
 
             // set value into textview
             TextView textView = (TextView) gridView
@@ -46,13 +46,13 @@ public class MyAdapter extends BaseAdapter {
             String option = menuOptions[position];
 
             if (option.equals("Profile")) {
-                imageView.setImageResource(R.mipmap.menu_user_profile);
+                imageView.setImageResource(R.mipmap.ic_menu_user_profile);
             } else if (option.equals("Rides")) {
-                imageView.setImageResource(R.mipmap.menu_rides);
+                imageView.setImageResource(R.mipmap.ic_menu_rides);
             } else if (option.equals("Goals")) {
-                imageView.setImageResource(R.mipmap.menu_goals);
+                imageView.setImageResource(R.mipmap.ic_menu_goals);
             } else if (option.equals("Cadence")){
-                imageView.setImageResource(R.mipmap.menu_cadence);
+                imageView.setImageResource(R.mipmap.ic_menu_cadence);
             }
 
         } else {
