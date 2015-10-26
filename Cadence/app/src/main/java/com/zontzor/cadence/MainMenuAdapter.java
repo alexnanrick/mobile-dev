@@ -35,13 +35,11 @@ public class MainMenuAdapter extends BaseAdapter {
             gridView = inflater.inflate(R.layout.item_menu_option, null);
 
             // set value into textview
-            TextView textView = (TextView) gridView
-                    .findViewById(R.id.grid_item_label);
+            TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
             textView.setText(menuOptions[position]);
 
             // set image based on selected text
-            ImageView imageView = (ImageView) gridView
-                    .findViewById(R.id.grid_item_image);
+            ImageView imageView = (ImageView) gridView.findViewById(R.id.grid_item_image);
 
             String option = menuOptions[position];
 
