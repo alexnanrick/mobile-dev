@@ -17,6 +17,12 @@
         </activity>
         <activity android:name=".UserProfileActivity" >
         </activity>
+        <activity android:name=".UserRidesActivity" >
+        </activity>
+        <activity android:name=".UserGoalsActivity" >
+        </activity>
+        <activity android:name=".CadenceCalcActivity" >
+        </activity>
     </application>
 
 </manifest>

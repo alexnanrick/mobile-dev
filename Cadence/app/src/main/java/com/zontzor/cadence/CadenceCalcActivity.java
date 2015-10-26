@@ -6,9 +6,9 @@ import android.os.Bundle;
 /**
  * Created by Zontzor on 2015-10-26.
  */
-public class UserGoalsActivity extends Activity {
+public class CadenceCalcActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_goals);
+        setContentView(R.layout.activity_cadence_calc);
     }
 }
