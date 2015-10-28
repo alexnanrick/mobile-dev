@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lab6-SQLite</string>
+    <string name="task">Enter a task: </string>
+    <string name="press">Press</string>
 </resources>

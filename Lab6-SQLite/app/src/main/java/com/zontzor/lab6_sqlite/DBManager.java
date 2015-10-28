@@ -2,6 +2,7 @@ package com.zontzor.lab6_sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -22,6 +23,10 @@ public class DBManager {
     private static final String KEY_TASK_DESCRIPTION = "description";
     private static final String KEY_TASK_STATUS = "status";
 
+    private static final String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
+            + KEY_ID + " INTEGER PRIMARY KEY autoincrement," + KEY_TASK_NAME + " TEXT,"
+            + KEY_TASK_DESCRIPTION + " TEXT" + KEY_TASK_STATUS + "TEXT" + ")";
+
     private final Context context;
     private MyDatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -38,9 +43,6 @@ public class DBManager {
         }
         @Override
         public void onCreate(SQLiteDatabase db) {
-            String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
-                    + KEY_ID + " INTEGER PRIMARY KEY autoincrement," + KEY_TASK_NAME + " TEXT,"
-                    + KEY_TASK_DESCRIPTION + " TEXT" + KEY_TASK_STATUS + "TEXT" + ")";
             db.execSQL(CREATE_TASKS_TABLE);
         }
 
@@ -58,7 +60,6 @@ public class DBManager {
         return this;
     }
 
-    //---closes the database---
     public void close()
     {
         DBHelper.close();
@@ -68,5 +69,18 @@ public class DBManager {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TASK_NAME, name);
         return db.insert(TABLE_TASKS, null, initialValues);
+    }
+
+    public Cursor getTask(String query)
+    {
+        Cursor mCursor = db.rawQuery(
+                "SELECT name FROM Tasks WHERE name = " + query, null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+
     }
 }
