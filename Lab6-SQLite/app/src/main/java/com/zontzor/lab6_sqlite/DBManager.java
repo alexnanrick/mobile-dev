@@ -23,9 +23,11 @@ public class DBManager {
     private static final String KEY_TASK_DESCRIPTION = "description";
     private static final String KEY_TASK_STATUS = "status";
 
-    private static final String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
-            + KEY_ID + " INTEGER PRIMARY KEY autoincrement," + KEY_TASK_NAME + " TEXT,"
-            + KEY_TASK_DESCRIPTION + " TEXT" + KEY_TASK_STATUS + "TEXT" + ")";
+    private static final String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "(" +
+                                KEY_ID + " INTEGER PRIMARY KEY autoincrement," +
+                                KEY_TASK_NAME + " TEXT," +
+                                KEY_TASK_DESCRIPTION + " TEXT" +
+                                KEY_TASK_STATUS + "INTEGER" + ")";
 
     private final Context context;
     private MyDatabaseHelper DBHelper;
@@ -65,16 +67,17 @@ public class DBManager {
         DBHelper.close();
     }
 
-    public long insertTask(String name) {
+    public long insertTask(String name, String desc) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TASK_NAME, name);
+        initialValues.put(KEY_TASK_DESCRIPTION, desc);
         return db.insert(TABLE_TASKS, null, initialValues);
     }
 
     public Cursor getTask(String query)
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT name FROM Tasks WHERE name = " + query, null);
+                "SELECT description FROM Tasks WHERE name = 'Buy a bike'", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

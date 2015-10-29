@@ -10,15 +10,47 @@
         android:id="@+id/text_task"
         android:text="@string/task"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edittext_task"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/button_press"
+        android:id="@+id/editText_taskname"
+        android:hint="Name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/press"
-        android:layout_below="@+id/edittext_task"/>
+        android:layout_below="@+id/text_task"/>
+    <EditText
+        android:id="@+id/editText_taskdesc"
+        android:hint="Description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_taskname"/>
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_below="@+id/editText_taskdesc"/>
+    <TextView
+        android:id="@+id/text_yourtask"
+        android:text="@string/recv_task"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_submit"/>
+    <EditText
+        android:id="@+id/editText_yourtask"
+        android:hint="Name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_yourtask"/>
+    <Button
+        android:id="@+id/button_retrieve"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recieve"
+        android:layout_below="@+id/editText_yourtask"/>
+    <EditText
+        android:id="@+id/editText_task_desc_recv"
+        android:hint="Description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_retrieve"/>
 </RelativeLayout>
