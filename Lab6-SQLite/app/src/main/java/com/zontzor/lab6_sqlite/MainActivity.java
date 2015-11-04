@@ -13,6 +13,8 @@ public class MainActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText taskName;
     EditText taskDesc;
+    EditText taskName2;
+    EditText taskName3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +61,14 @@ public class MainActivity extends Activity {
                 try
                 {
                     db.open();
-                    taskName = (EditText)findViewById(R.id.editText_taskname);
-                    result = db.getTask(taskName.getText().toString());
+                    taskName2 = (EditText)findViewById(R.id.editText_yourtask);
+                    db.getTask(taskName2.getText().toString());
+                    result = db.getTask(taskName2.getText().toString());
 
                     str = result.getString(result.getColumnIndex("description"));
 
-                    Context context = getApplicationContext();
-                    CharSequence text = str;
-                    int duration = Toast.LENGTH_LONG;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    taskName3 = (EditText)findViewById(R.id.editText_task_desc_recv);
+                    taskName3.setText(str);
 
                     db.close();
                 }

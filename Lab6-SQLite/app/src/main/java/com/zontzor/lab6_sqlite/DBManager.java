@@ -77,7 +77,7 @@ public class DBManager {
     public Cursor getTask(String query)
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT description FROM Tasks WHERE name = 'Buy a bike'", null);
+                "SELECT description FROM Tasks WHERE name LIKE " + "'" + query + "';", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();
