@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab6-SQLite</string>
+    <string name="task">Enter a task: </string>
+    <string name="recv_task">Task: </string>
+    <string name="press">Press</string>
+    <string name="submit">Submit</string>
+    <string name="recieve">Retrieve</string>
+</resources>
