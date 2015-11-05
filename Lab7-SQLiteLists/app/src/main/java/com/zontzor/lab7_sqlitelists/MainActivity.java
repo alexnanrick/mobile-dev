@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.database.Cursor;
 
@@ -14,8 +16,7 @@ public class MainActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText taskName;
     EditText taskDesc;
-    EditText taskName2;
-    EditText taskName3;
+    TextView taskStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +58,6 @@ public class MainActivity extends Activity {
                     MyCursorAdapter cursorAdapter = new MyCursorAdapter(MainActivity.this, result);
                     listTasks.setAdapter(cursorAdapter);
                     db.close();
-
-                    String str = result.getString(result.getColumnIndex("description"));
-
-                    Context context = getApplicationContext();
-                    CharSequence text = str;
-                    int duration = Toast.LENGTH_LONG;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
                 } catch (Exception ex) {
                     Context context = getApplicationContext();
                     CharSequence text = "Error opening database";
@@ -74,6 +66,22 @@ public class MainActivity extends Activity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
+            }
+        });
+
+        listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> av, View view, int position, long arg) {
+                //taskStatus = (TextView) findViewById(R.id.TextView_task_comp);
+                Cursor mycursor = (Cursor) av.getItemAtPosition(position);
+                String selection = mycursor.getString(3);
+
+                Context context = getApplicationContext();
+                CharSequence text = selection;
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         });
     }

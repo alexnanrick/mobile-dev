@@ -27,11 +27,14 @@ public class MyCursorAdapter extends CursorAdapter {
         // Find fields to populate in inflated template
         TextView taskName = (TextView) view.findViewById(R.id.TextView_task_name);
         TextView taskDesc = (TextView) view.findViewById(R.id.TextView_task_desc);
+        TextView taskStat = (TextView) view.findViewById(R.id.TextView_task_comp);
         // Extract properties from cursor
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         String desc = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+        String stat = cursor.getString(cursor.getColumnIndexOrThrow("status"));
         // Populate fields with extracted properties
         taskName.setText(name);
         taskDesc.setText(desc);
+        taskStat.setText(stat);
     }
 }
