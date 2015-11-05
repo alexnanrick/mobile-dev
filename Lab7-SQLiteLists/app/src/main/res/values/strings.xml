@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab6-SQLite</string>
+    <string name="app_name">Lab7-SQLiteLists</string>
     <string name="task">Enter a task: </string>
     <string name="recv_task">Task: </string>
     <string name="press">Press</string>

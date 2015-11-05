@@ -86,4 +86,17 @@ public class DBManager {
         return mCursor;
 
     }
+
+    public Cursor getAll()
+    {
+        Cursor mCursor = db.rawQuery(
+                "SELECT * FROM Tasks;", null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+
+        return mCursor;
+
+    }
 }
