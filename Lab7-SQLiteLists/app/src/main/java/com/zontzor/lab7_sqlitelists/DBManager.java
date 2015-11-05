@@ -23,11 +23,7 @@ public class DBManager {
     private static final String KEY_TASK_DESCRIPTION = "description";
     private static final String KEY_TASK_STATUS = "status";
 
-    private static final String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "(" +
-            KEY_ID + " INTEGER PRIMARY KEY autoincrement," +
-            KEY_TASK_NAME + " TEXT," +
-            KEY_TASK_DESCRIPTION + " TEXT" +
-            KEY_TASK_STATUS + "INTEGER" + ")";
+    private static final String CREATE_TASKS_TABLE = "CREATE TABLE Tasks (_id INTEGER PRIMARY KEY autoincrement, name TEXT, description TEXT, status TEXT);";
 
     private final Context context;
     private MyDatabaseHelper DBHelper;
@@ -71,6 +67,7 @@ public class DBManager {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TASK_NAME, name);
         initialValues.put(KEY_TASK_DESCRIPTION, desc);
+        initialValues.put(KEY_TASK_STATUS, "N");
         return db.insert(TABLE_TASKS, null, initialValues);
     }
 

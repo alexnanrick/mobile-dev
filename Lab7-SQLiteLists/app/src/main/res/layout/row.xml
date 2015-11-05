@@ -5,10 +5,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_task_name"/>
+        android:id="@+id/TextView_label_text_name"
+        android:text="Name: "/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText_task_desc"
-        android:layout_below="@id/editText_task_name"/>
+        android:id="@+id/TextView_task_name"
+        android:layout_toRightOf="@+id/TextView_label_text_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_label_text_desc"
+        android:text="Description: "
+        android:layout_below="@id/TextView_label_text_name"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_task_desc"
+        android:layout_below="@id/TextView_label_text_name"
+        android:layout_toRightOf="@+id/TextView_label_text_desc"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_label_text_comp"
+        android:text="Completed: "
+        android:layout_below="@id/TextView_label_text_desc"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextView_task_comp"
+        android:layout_below="@id/TextView_label_text_desc"
+        android:layout_toRightOf="@+id/TextView_label_text_comp"/>
 </RelativeLayout>
