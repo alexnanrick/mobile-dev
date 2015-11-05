@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
     DBManager db = new DBManager(this);
     EditText taskName;
     EditText taskDesc;
+    EditText taskStat;
     TextView taskStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class MainActivity extends Activity {
                     db.open();
                     taskName = (EditText) findViewById(R.id.editText_taskname);
                     taskDesc = (EditText) findViewById(R.id.editText_taskdesc);
-                    db.insertTask(taskName.getText().toString(), taskDesc.getText().toString());
+                    taskStat = (EditText) findViewById(R.id.editText_taskstatus);
+                    db.insertTask(taskName.getText().toString(), taskDesc.getText().toString(), taskStat.getText().toString());
                     db.close();
                 } catch (Exception ex) {
                     Context context = getApplicationContext();
@@ -72,7 +74,6 @@ public class MainActivity extends Activity {
         listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> av, View view, int position, long arg) {
-                //taskStatus = (TextView) findViewById(R.id.TextView_task_comp);
                 Cursor mycursor = (Cursor) av.getItemAtPosition(position);
                 String selection = mycursor.getString(3);
 

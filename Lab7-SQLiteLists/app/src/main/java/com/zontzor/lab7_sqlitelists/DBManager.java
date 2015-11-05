@@ -63,11 +63,11 @@ public class DBManager {
         DBHelper.close();
     }
 
-    public long insertTask(String name, String desc) {
+    public long insertTask(String name, String desc, String stat) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_TASK_NAME, name);
         initialValues.put(KEY_TASK_DESCRIPTION, desc);
-        initialValues.put(KEY_TASK_STATUS, "N");
+        initialValues.put(KEY_TASK_STATUS, stat);
         return db.insert(TABLE_TASKS, null, initialValues);
     }
 
@@ -87,7 +87,7 @@ public class DBManager {
     public Cursor getAll()
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT * FROM Tasks;", null);
+                "SELECT * FROM Tasks WHERE status = 'Y';", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

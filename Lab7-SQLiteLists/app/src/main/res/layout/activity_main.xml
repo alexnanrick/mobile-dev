@@ -23,12 +23,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText_taskname"/>
+    <EditText
+        android:id="@+id/editText_taskstatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Status"
+        android:layout_below="@+id/editText_taskdesc"/>
     <Button
         android:id="@+id/button_submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:layout_below="@+id/editText_taskdesc"/>
+        android:layout_below="@+id/editText_taskstatus"/>
     <Button
         android:id="@+id/button_retrieve"
         android:layout_width="fill_parent"

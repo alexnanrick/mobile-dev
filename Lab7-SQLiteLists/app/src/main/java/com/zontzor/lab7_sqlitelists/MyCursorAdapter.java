@@ -32,6 +32,7 @@ public class MyCursorAdapter extends CursorAdapter {
         String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
         String desc = cursor.getString(cursor.getColumnIndexOrThrow("description"));
         String stat = cursor.getString(cursor.getColumnIndexOrThrow("status"));
+
         // Populate fields with extracted properties
         taskName.setText(name);
         taskDesc.setText(desc);
