@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
     public void onClick(View view) {
         // Gets the URL from the UI's text field.
-        String stringUrl = "http://www.android.com";
+        String stringUrl = "http://jsonplaceholder.typicode.com/todos";
 
         // Check to see if a network connection is available
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -73,7 +77,17 @@ public class MainActivity extends Activity implements View.OnClickListener
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            textView.setText(result);
+            try {
+                String json = "{"
+                        + "  \"query\": \"Pizza\", "
+                        + "  \"locations\": [ 94043, 90210 ] "
+                        + "}";
+
+                JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
+                //textView.setText(result);
+            } catch (JSONException je) {
+                textView.setText("You Done Fucked Up Now");
+            }
         }
     }
 
@@ -120,4 +134,3 @@ public class MainActivity extends Activity implements View.OnClickListener
         return new String(buffer);
     }
 }
-
