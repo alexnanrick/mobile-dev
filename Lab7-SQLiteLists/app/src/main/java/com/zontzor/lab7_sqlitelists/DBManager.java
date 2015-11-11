@@ -29,6 +29,7 @@ public class DBManager {
     private MyDatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
+    // we must pass the context from our class that we called from
     public DBManager(Context ctx) {
         this.context = ctx;
         DBHelper = new MyDatabaseHelper(context);

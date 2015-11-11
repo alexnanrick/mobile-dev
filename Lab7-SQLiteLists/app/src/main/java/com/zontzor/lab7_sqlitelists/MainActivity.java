@@ -13,11 +13,11 @@ import android.widget.Toast;
 import android.database.Cursor;
 
 public class MainActivity extends Activity {
+    // pass our context
     DBManager db = new DBManager(this);
     EditText taskName;
     EditText taskDesc;
     EditText taskStat;
-    TextView taskStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
