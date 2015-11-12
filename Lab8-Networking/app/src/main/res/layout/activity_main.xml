@@ -10,7 +10,7 @@
         android:id="@+id/myUrl"
         android:hint="Type a URL"
         android:inputType="textUri"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
@@ -18,12 +18,15 @@
         android:text="Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_below="@+id/myUrl"
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:id="@+id/myText"
         android:text="Webpage goes here"
+        android:maxLines="300"
+        android:scrollbars="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button"/>

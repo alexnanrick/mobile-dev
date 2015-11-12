@@ -6,16 +6,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,6 +43,8 @@ public class MainActivity extends Activity implements View.OnClickListener
         textView      = (TextView) findViewById(R.id.myText);
         connectButton = (Button) findViewById(R.id.button);
         connectButton.setOnClickListener(this);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+
     }
 
     public void onClick(View view) {
@@ -77,16 +82,26 @@ public class MainActivity extends Activity implements View.OnClickListener
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            try {
-                String json = "{"
-                        + "  \"query\": \"Pizza\", "
-                        + "  \"locations\": [ 94043, 90210 ] "
-                        + "}";
 
-                JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
-                //textView.setText(result);
+            String data ="";
+
+            try {
+                JSONArray myArray = new JSONArray(result);
+
+                for(int i=0; i < myArray.length(); i++) {
+                    JSONObject jsonObject = myArray.getJSONObject(i);
+
+                    int id = Integer.parseInt(jsonObject.optString("id").toString());
+                    String title = jsonObject.optString("title").toString();
+                    String completed = jsonObject.optString("completed").toString();
+
+                    data += "id= " + id + " \n " +
+                            "Title= " + title + " \n " +
+                            "Completed= " + completed + " \n ";
+
+                }
             } catch (JSONException je) {
-                textView.setText("You Done Fucked Up Now");
+                textView.setText("JSON Parse Error");
             }
         }
     }
@@ -98,7 +113,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         InputStream is = null;
         // Only display the first 500 characters of the retrieved
         // web page content.
-        int len = 500;
+        int len = 1000;
 
         try {
             URL url = new URL(myurl);
@@ -114,7 +129,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             is = conn.getInputStream();
 
             // Convert the InputStream into a string
-            String contentAsString = readIt(is, len);
+            String contentAsString = convertStreamToString(is);
             return contentAsString;
 
             // Makes sure that the InputStream is closed after the app is
@@ -126,11 +141,24 @@ public class MainActivity extends Activity implements View.OnClickListener
         }
     }
     // Reads an InputStream and converts it to a String.
-    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
     }
 }
