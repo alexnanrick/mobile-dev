@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * Created by Zontzor on 2015-11-12.
  */
 public class DBManager {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String DATABASE_NAME = "TaskList";
 
@@ -78,7 +78,7 @@ public class DBManager {
     public Cursor getTask(String query)
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT title FROM Tasks WHERE id LIKE " + "'" + query + "';", null);
+                "SELECT * FROM Tasks WHERE _id = " + "'" + query + "';", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

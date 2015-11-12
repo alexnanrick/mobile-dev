@@ -2,6 +2,7 @@ package com.zontzor.lab8_networking;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -17,52 +18,72 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends Activity implements View.OnClickListener
+public class MainActivity extends Activity
 {
     private static final String DEBUG_TAG = "HttpExample";
     private EditText urlText;
     private TextView textView;
     private Button connectButton;
+    private Button retrieveButton;
+
     DBManager db = new DBManager(this);
 
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        urlText       = (EditText) findViewById(R.id.myUrl);
-        textView      = (TextView) findViewById(R.id.myText);
+        urlText = (EditText) findViewById(R.id.myUrl);
+        textView = (TextView) findViewById(R.id.myText);
         connectButton = (Button) findViewById(R.id.button);
-        connectButton.setOnClickListener(this);
+        retrieveButton = (Button) findViewById(R.id.retrieveButton);
         textView.setMovementMethod(new ScrollingMovementMethod());
 
-    }
+        connectButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Gets the URL from the UI's text field.
+                String stringUrl = "http://jsonplaceholder.typicode.com/todos";
 
-    public void onClick(View view) {
-        // Gets the URL from the UI's text field.
-        String stringUrl = "http://jsonplaceholder.typicode.com/todos";
+                // Check to see if a network connection is available
+                ConnectivityManager connMgr = (ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        // Check to see if a network connection is available
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    new DownloadWebpageTask().execute(stringUrl);
+                } else {
+                    textView.setText("No network connection available");
+                }
+            }
+        });
 
-        if (networkInfo != null && networkInfo.isConnected()) {
-            new DownloadWebpageTask().execute(stringUrl);
-        } else {
-            textView.setText("No network connection available");
-        }
+        retrieveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String id = urlText.getText().toString();
+                try {
+                    db.open();
+                    Cursor result = db.getTask(id);
+                    String selection = "{" + "title:" + result.getString(1) + ", completed:" + result.getString(2) + "}";
+                    textView.setText(selection);
+                } catch (Exception ex) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Error opening database";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } finally {
+                    db.close();
+                }
+            }
+        });
     }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a
@@ -114,7 +135,7 @@ public class MainActivity extends Activity implements View.OnClickListener
                             "Title= " + title + " \n " +
                             "Completed= " + completed + " \n ";
 
-                    textView.setText(data);
+                    textView.setText("Data Inserted");
                 }
             } catch (JSONException je) {
                 textView.setText("JSON Parse Error");

@@ -22,6 +22,15 @@
         android:layout_centerHorizontal="true"
         />
 
+    <Button
+        android:id="@+id/retrieveButton"
+        android:text="Test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        />
+
     <TextView
         android:id="@+id/myText"
         android:text="Webpage goes here"
@@ -29,5 +38,5 @@
         android:scrollbars="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button"/>
+        android:layout_below="@+id/retrieveButton"/>
 </RelativeLayout>
