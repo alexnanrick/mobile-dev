@@ -12,21 +12,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.sql.SQLException;
 
 /**
- * Created by Zontzor on 2015-10-28.
+ * Created by Zontzor on 2015-11-12.
  */
 public class DBManager {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_NAME = "TaskList";
 
     private static final String TABLE_TASKS = "Tasks";
 
     private static final String KEY_ID = "_id";
-    private static final String KEY_TASK_NAME = "name";
-    private static final String KEY_TASK_DESCRIPTION = "description";
-    private static final String KEY_TASK_STATUS = "status";
+    private static final String KEY_TASK_TITLE = "title";
+    private static final String KEY_TASK_COMPLETED = "completed";
 
-    private static final String CREATE_TASKS_TABLE = "CREATE TABLE Tasks (_id INTEGER PRIMARY KEY, title TEXT, completed TEXT);";
+    private static final String CREATE_TASKS_TABLE =
+            "CREATE TABLE Tasks (_id INTEGER PRIMARY KEY, title TEXT, completed TEXT);";
 
     private final Context context;
     private MyDatabaseHelper DBHelper;
@@ -67,19 +67,18 @@ public class DBManager {
         DBHelper.close();
     }
 
-    public long insertTask(String name, String desc, String stat) {
+    public long insertTask(String id, String title, String comp) {
         ContentValues initialValues = new ContentValues();
-        initalValues.put(KEY_ID, _id);
-        initialValues.put(KEY_TASK_NAME, name);
-        initialValues.put(KEY_TASK_DESCRIPTION, desc);
-        initialValues.put(KEY_TASK_STATUS, stat);
+        initialValues.put (KEY_ID, id);
+        initialValues.put (KEY_TASK_TITLE, title);
+        initialValues.put (KEY_TASK_COMPLETED, comp);
         return db.insert(TABLE_TASKS, null, initialValues);
     }
 
     public Cursor getTask(String query)
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT description FROM Tasks WHERE name LIKE " + "'" + query + "';", null);
+                "SELECT title FROM Tasks WHERE id LIKE " + "'" + query + "';", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -92,7 +91,7 @@ public class DBManager {
     public Cursor getAll()
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT * FROM Tasks WHERE status = 'Y';", null);
+                "SELECT * FROM Tasks WHERE status = 'true';", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();

@@ -104,22 +104,22 @@ public class MainActivity extends Activity implements View.OnClickListener
                 for(int i=0; i < myArray.length(); i++) {
                     JSONObject jsonObject = myArray.getJSONObject(i);
 
-                    int id = Integer.parseInt(jsonObject.optString("id").toString());
-                    String title = jsonObject.optString("title").toString();
-                    String completed = jsonObject.optString("completed").toString();
+                    String id = jsonObject.optString("id");
+                    String title = jsonObject.optString("title");
+                    String completed = jsonObject.optString("completed");
 
-                    db.insertTask()
+                    db.insertTask(id, title, completed);
 
                     data += "id= " + id + " \n " +
                             "Title= " + title + " \n " +
                             "Completed= " + completed + " \n ";
 
                     textView.setText(data);
-
-                    db.close();
                 }
             } catch (JSONException je) {
                 textView.setText("JSON Parse Error");
+            } finally {
+                db.close();
             }
         }
     }
@@ -158,14 +158,18 @@ public class MainActivity extends Activity implements View.OnClickListener
             }
         }
     }
-    // Reads an InputStream and converts it to a String.
+    // Reads an InputStream and converts it to a String
     private String convertStreamToString(InputStream is) {
+        // Reads data from the input stream until the buffer is full
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        // Stores the data
         StringBuilder sb = new StringBuilder();
-
+        // Temp var holds each line
         String line = null;
         try {
+            // Read in data from the buffer until empty
             while ((line = reader.readLine()) != null) {
+                // Add line to end of string then add escape char
                 sb.append(line).append('\n');
             }
         } catch (IOException e) {
