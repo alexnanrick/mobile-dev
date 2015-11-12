@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener
     private EditText urlText;
     private TextView textView;
     private Button connectButton;
+    DBManager db = new DBManager(this);
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -86,6 +88,17 @@ public class MainActivity extends Activity implements View.OnClickListener
             String data ="";
 
             try {
+                db.open();
+            } catch (Exception ex) {
+                Context context = getApplicationContext();
+                CharSequence text = "Error opening database";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+
+            try {
                 JSONArray myArray = new JSONArray(result);
 
                 for(int i=0; i < myArray.length(); i++) {
@@ -95,10 +108,15 @@ public class MainActivity extends Activity implements View.OnClickListener
                     String title = jsonObject.optString("title").toString();
                     String completed = jsonObject.optString("completed").toString();
 
+                    db.insertTask()
+
                     data += "id= " + id + " \n " +
                             "Title= " + title + " \n " +
                             "Completed= " + completed + " \n ";
 
+                    textView.setText(data);
+
+                    db.close();
                 }
             } catch (JSONException je) {
                 textView.setText("JSON Parse Error");
