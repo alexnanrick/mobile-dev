@@ -13,7 +13,7 @@ public class UserRidesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_rides);
 
-        btnAddRide = (Button) findViewById(R.id.btn_rides_add);
+        btnAddRide = (Button) findViewById(R.id.button_rides_add);
 
         btnAddRide.setOnClickListener(new View.OnClickListener() {
             @Override
