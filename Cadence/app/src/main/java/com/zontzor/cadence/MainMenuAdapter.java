@@ -8,9 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by Zontzor on 2015-10-26.
- */
 public class MainMenuAdapter extends BaseAdapter {
     private Context context;
     private final String[] menuOptions;

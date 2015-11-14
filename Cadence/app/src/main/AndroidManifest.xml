@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zontzor.cadence" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +25,8 @@
         <activity android:name=".UserGoalsActivity" >
         </activity>
         <activity android:name=".CadenceCalcActivity" >
+        </activity>
+        <activity android:name=".RideAddActivity" >
         </activity>
     </application>
 
