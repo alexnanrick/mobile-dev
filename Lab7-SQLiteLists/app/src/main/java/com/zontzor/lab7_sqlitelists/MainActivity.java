@@ -8,9 +8,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.database.Cursor;
+
+import com.zontzor.lab7_sqlitelists.network.DBManager;
+import com.zontzor.lab7_sqlitelists.views.adapters.MyCursorAdapter;
 
 public class MainActivity extends Activity {
     // pass our context

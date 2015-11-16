@@ -1,4 +1,4 @@
-package com.zontzor.lab7_sqlitelists;
+package com.zontzor.lab7_sqlitelists.views.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import com.zontzor.lab7_sqlitelists.R;
 
 public class MyCursorAdapter extends CursorAdapter {
     public MyCursorAdapter(Context context, Cursor cursor) {

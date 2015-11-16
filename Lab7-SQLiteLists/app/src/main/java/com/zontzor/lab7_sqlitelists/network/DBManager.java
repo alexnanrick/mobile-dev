@@ -1,4 +1,4 @@
-package com.zontzor.lab7_sqlitelists;
+package com.zontzor.lab7_sqlitelists.network;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by Zontzor on 2015-10-28.
  */
 public class DBManager {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_NAME = "TaskList";
 
