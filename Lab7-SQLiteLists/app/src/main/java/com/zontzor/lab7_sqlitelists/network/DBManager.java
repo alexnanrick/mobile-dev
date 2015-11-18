@@ -12,9 +12,9 @@ import java.sql.SQLException;
  * Created by Zontzor on 2015-10-28.
  */
 public class DBManager {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "TaskList";
+    private static final String DATABASE_NAME = "TaskList.db";
 
     private static final String TABLE_TASKS = "Tasks";
 
@@ -88,7 +88,7 @@ public class DBManager {
     public Cursor getAll()
     {
         Cursor mCursor = db.rawQuery(
-                "SELECT * FROM Tasks WHERE status = 'Y';", null);
+                "SELECT * FROM Tasks", null);
 
         if (mCursor != null) {
             mCursor.moveToFirst();
