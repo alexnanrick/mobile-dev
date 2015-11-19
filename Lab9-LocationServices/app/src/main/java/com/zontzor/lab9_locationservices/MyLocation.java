@@ -1,40 +1,28 @@
 package com.zontzor.lab9_locationservices;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MyLocation extends AppCompatActivity implements LocationListener {
+public class MyLocation extends Activity implements LocationListener {
 
     private LocationManager locationManager;
     private TextView locationText;
-    private Button locationButton;
+    StringBuilder stringBuilder = new StringBuilder();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpstest);
         locationText = (TextView) findViewById(R.id.text_location);
-        locationButton = (Button) findViewById(R.id.btn_get_loc);
         setupLocation();
-
-        locationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -46,8 +34,11 @@ public class MyLocation extends AppCompatActivity implements LocationListener {
                     location.getLongitude(), location.getLatitude());
         }
 
+        stringBuilder.append(latestLocation + "\n\n");
+        String finalString = stringBuilder.toString();
+
         Toast.makeText(MyLocation.this, latestLocation, Toast.LENGTH_LONG).show();
-        locationText.setText(latestLocation);
+        locationText.setText(finalString);
     }
     public void onProviderDisabled(String arg0) {
         Log.e("GPS", "provider disabled " + arg0);
@@ -62,7 +53,7 @@ public class MyLocation extends AppCompatActivity implements LocationListener {
     private void setupLocation() {
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         try {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000, 5, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
         } catch (SecurityException e) {
             Log.e("PERMISSION_EXCEPTION","PERMISSION_NOT_GRANTED");
         }
@@ -71,7 +62,7 @@ public class MyLocation extends AppCompatActivity implements LocationListener {
     protected void onResume() {
         super.onResume();
         try {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000, 5, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 0, this);
         } catch (SecurityException e) {
             Log.e("PERMISSION_EXCEPTION","PERMISSION_NOT_GRANTED");
         }
@@ -81,6 +72,7 @@ public class MyLocation extends AppCompatActivity implements LocationListener {
         super.onPause();
         try {
             locationManager.removeUpdates(this);
+            Log.w("PAUSED", "Just dropped location checking when activity gone into background");
         } catch (SecurityException e) {
             Log.e("PERMISSION_EXCEPTION","PERMISSION_NOT_GRANTED");
         }
