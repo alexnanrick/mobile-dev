@@ -18,9 +18,18 @@
     <TextView
         android:id="@+id/text_location"
         android:text="Location..."
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:maxLines = "30"
+        android:scrollbars = "vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_title"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/btn_open_maps"
+        android:text="Open Maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_location"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
