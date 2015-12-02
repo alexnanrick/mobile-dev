@@ -13,9 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import android.content.Intent;
 import android.content.res.Configuration;
-
-import com.zontzor.lab11_fragments.R;
-import com.zontzor.lab11_fragments.ShowItemActivity;
+import android.widget.Toast;
 
 public class Fragment1Controller extends Fragment
 {
@@ -34,7 +32,10 @@ public class Fragment1Controller extends Fragment
             {
 
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                    //myListener.onOptionSelected(((TextView)  v).getText().toString());
+                    String selection = (String)parent.getItemAtPosition(position);
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), selection,
+                            Toast.LENGTH_SHORT);
+                    toast.show();
                 } else {
                     Intent intent = new Intent(getActivity().getApplicationContext(),  ShowItemActivity.class);
                     intent.putExtra("item", ((TextView) v).getText().toString());

@@ -1,12 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
     <fragment
-        android:name="com.zontzor.lab11_fragments.Fragment1Controller"
+        android:name="com.zontzor.lab11_fragments.Fragment2Controller"
         android:id="@+id/fragment1"
         android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <fragment
+        android:name="com.zontzor.lab11_fragments.Fragment2Controller"
+        android:id="@+id/fragment2"
+        android:layout_weight="0"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 </LinearLayout>

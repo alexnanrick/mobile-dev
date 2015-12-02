@@ -11,7 +11,6 @@ public class ShowItemActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        // If landscape, exit - the screen is already being handled by the MainActivity
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
         {
